@@ -1,76 +1,43 @@
-{% extends 'meu_app/base.html' %}
+{% for item in equipamentos %}
+<tr>
+    <td><strong>#{{ item.id }}</strong></td>
 
-{% block meu_conteudo %}
-<div class="container mt-4">
-    
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>📊 Painel de Controle (Dashboard)</h2>
-        <a href="/cadastrar/" class="btn btn-success">+ Adicionar Equipamento</a>
-    </div>
+    <td>{{ item.nome }}</td>
 
-    <!-- Mini Cards de Resumo -->
-    <div class="row mb-4">
-        <div class="col-md-4">
-            <div class="card bg-primary text-white shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">Total de Equipamentos</h5>
-                    <h3>{{ total }} cadastrados</h3>
-                </div>
-            </div>
-        </div>
-    </div>
+    <td>{{ item.numero_patrimonio }}</td>
 
-    <!-- Tabela Gerencial -->
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <table class="table table-hover align-middle">
-                <thead class="table-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>Equipamento</th>
-                        <th>Numero Patrimonio</th>
-                        <th>Tipo</th>
-                        <th>Em uso</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in equipamentos %}
-                    <tr>
-                        <td><strong>#{{ item.id }}</strong></td>
-                        <td>{{ item.nome }}</td>
-                        <td>{{ item.numero_patrimonio }}</td>
-                        <td>
-                            {% if item.em_uso %}
-                                <span class="badge bg-danger"> Em uso</span>
-                            {% else %}
-                                <span class="badge bg-sucess">Disponível</span>
-                            {% endif %}
-                        </td>
-                        <td>
-                            <!-- Botão de Ver Detalhes (Azul) -->
-                            <a href="/equipamento/{{ item.id }}/" class="btn btn-sm btn-outline-primary">Ver</a>
-                            
-                            <!-- Botão de Editar (Amarelo) -->
-                            <a href="/editar/{{ item.id }}/" class="btn btn-sm btn-outline-warning">Editar</a>
-                            
-                            <!-- Botão de Apagar (Vermelho) com alerta de segurança do JavaScript -->
-                            <a href="/deletar/{{ item.id }}/" class="btn btn-sm btn-outline-danger" 
-                               onclick="return confirm('Tem certeza que deseja apagar o produto {{ item.nome }}?')">
-                               Apagar
-                            </a>
-                        </td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="5" class="text-center text-muted py-4">
-                            Nenhum produto cadastrado ainda.
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
+    <td>{{ item.tipo }}</td>
 
-</div>
-{% endblock %}
+    <td>
+        {% if item.em_uso %}
+            <span class="badge bg-danger">Em uso</span>
+        {% else %}
+            <span class="badge bg-success">Disponível</span>
+        {% endif %}
+    </td>
+
+    <td>
+        <a href="/equipamento/{{ item.id }}/"
+           class="btn btn-sm btn-outline-primary">
+            Ver
+        </a>
+
+        <a href="/editar/{{ item.id }}/"
+           class="btn btn-sm btn-outline-warning">
+            Editar
+        </a>
+
+        <a href="/deletar/{{ item.id }}/"
+           class="btn btn-sm btn-outline-danger"
+           onclick="return confirm('Tem certeza que deseja apagar o equipamento {{ item.nome }}?')">
+            Apagar
+        </a>
+    </td>
+</tr>
+{% empty %}
+<tr>
+    <td colspan="6" class="text-center text-muted py-4">
+        Nenhum equipamento cadastrado ainda.
+    </td>
+</tr>
+{% endfor %}
