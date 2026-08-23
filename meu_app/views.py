@@ -29,17 +29,17 @@ def painel_dashboard(request):
     }
     return render(request, 'meu_app/dashboard.html', bandeja)
 
-def detalhe_produto(request, id):
+def detalhe_equipamento(request, id):
     # O Django vai no banco e procura o Produto com o ID que veio na URL.
     # Se alguém digitar um ID que não existe (ex: /produto/999/), ele mostra a tela de Erro 404 em vez de quebrar o site!
-    produto_escolhido = get_object_or_404(Equipamento, id=id)
+    equipamento_escolhido = get_object_or_404(Equipamento, id=id)
     
     # Colocamos apenas ESSE produto na bandeja
     bandeja = {
-        'produto': produto_escolhido
+        'equipamento': equipamento_escolhido
     }
     
-    return render(request, 'meu_app/detalhe_produto.html', bandeja)
+    return render(request, 'meu_app/detalhe_equipamento.html', bandeja)
 
 
 
@@ -64,7 +64,7 @@ def cadastrar_equipamento(request):
 
 def editar_equipamento(request, id):
     # 1. Busca o produto no banco
-    produto = get_object_or_404(Equipamento, id=id)
+    equipamento = get_object_or_404(Equipamento, id=id)
     
     # 2. Se for POST, salva as alterações. O "instance=produto" avisa que é uma edição!
     if request.method == 'POST':
