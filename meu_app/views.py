@@ -30,8 +30,11 @@ def painel_dashboard(request):
     return render(request, 'meu_app/dashboard.html', bandeja)
 
 def detalhe_equipamento(request, id):
+<<<<<<< Updated upstream
     # O Django vai no banco e procura o Produto com o ID que veio na URL.
     # Se alguém digitar um ID que não existe (ex: /produto/999/), ele mostra a tela de Erro 404 em vez de quebrar o site!
+=======
+>>>>>>> Stashed changes
     equipamento_escolhido = get_object_or_404(Equipamento, id=id)
     
     # Colocamos apenas ESSE produto na bandeja
@@ -64,7 +67,11 @@ def cadastrar_equipamento(request):
 
 def editar_equipamento(request, id):
     # 1. Busca o produto no banco
+<<<<<<< Updated upstream
     equipamento = get_object_or_404(Equipamento, id=id)
+=======
+    produto = get_object_or_404(Equipamento, id=id)
+>>>>>>> Stashed changes
     
     # 2. Se for POST, salva as alterações. O "instance=produto" avisa que é uma edição!
     if request.method == 'POST':
@@ -83,4 +90,8 @@ def editar_equipamento(request, id):
 def deletar_equipamento(request, id):
     equipamento = get_object_or_404(Equipamento, id=id)
     equipamento.delete() # O comando SQL DELETE invisível!
+<<<<<<< Updated upstream
     return redirect('/dashboard/')
+=======
+    return redirect('/dashboard/')
+>>>>>>> Stashed changes
