@@ -3,19 +3,19 @@
 {% block meu_conteudo %}
 <div class="container mt-5">
     
-    <!-- Botão de Voltar -->
+    
     <a href="/loja-inteligente/" class="btn btn-outline-secondary mb-4">← Voltar para a Vitrine</a>
 
     <div class="card shadow">
         <div class="row g-0">
             
-            <!-- Coluna da Imagem (Ocupa 4 espaços de 12) -->
+            
             <div class="col-md-4">
-                <!-- Trocamos o via.placeholder pelo placehold.co -->
+                
                 <img src="https://placehold.co/400x400?text={{ produto.imagem }}" class="img-fluid rounded-start h-100" style="object-fit: cover;">
             </div>
             
-            <!-- Coluna dos Textos (Ocupa 8 espaços de 12) -->
+        
             <div class="col-md-8">
                 <div class="card-body p-5">
                     <h2 class="card-title display-5">{{ produto.nome }}</h2>
@@ -27,7 +27,7 @@
                         Aproveite as condições especiais!
                     </p>
 
-                    <!-- Lógica do Botão com base no estoque -->
+                    
                     {% if produto.estoque > 0 %}
                         <div class="alert alert-info">
                             <strong>Disponibilidade:</strong> Temos {{ produto.estoque }} unidade(s) em estoque.
