@@ -10,7 +10,7 @@ def painel_dashboard(request):
         'equipamentos': todos_equipamentos,
         'total': todos_equipamentos.count()
     }
-    return render(request, 'meu_app/dashboard.html', bandeja)
+    return render(request, 'dashboard.html', bandeja)
 
 def detalhe_equipamento(request, id):
     equipamento_escolhido = get_object_or_404(Equipamento, id=id)
