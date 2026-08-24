@@ -1,0 +1,51 @@
+{% extends "meu_app/base.html" %}
+
+{% block meu_conteudo %}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="mb-4">
+                Cadastrar Equipamento
+            </h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label">
+                        {{ form.nome.label }}
+                    </label>
+                    {{ form.nome }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">
+                        {{ form.numero_patrimonio.label }}
+                    </label>
+                    {{ form.numero_patrimonio }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">
+                        {{ form.tipo.label }}
+                    </label>
+                    {{ form.tipo }}
+                </div>
+                <div class="form-check mb-3">
+                    {{ form.em_uso }}
+                    <label class="form-check-label">
+                        {{ form.em_uso.label }}
+                    </label>
+                </div>
+                <button
+                    type="submit"
+                    class="btn btn-success">
+                    Salvar Equipamento
+                </button>
+                <a
+                    href="{% url 'dashboard' %}"
+                    class="btn btn-secondary">
+                    Cancelar
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

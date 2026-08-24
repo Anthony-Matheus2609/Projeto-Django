@@ -8,5 +8,5 @@ class EquipamentoForm(forms.ModelForm):
             'nome': forms.TextInput(attrs = {'class': 'form-control'}),
             'numero_patrimonio': forms.NumberInput(attrs = {'class': 'form-control'}),
             'tipo': forms.TextInput(attrs= {'class': 'form-control'}),
-            'em_uso': forms.CheckboxInput,
+            'em_uso': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }

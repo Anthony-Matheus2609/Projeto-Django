@@ -1,0 +1,62 @@
+{% extends "meu_app/base.html" %}
+
+{% block meu_conteudo %}
+
+<div class="container mt-5">
+    <a href="{% url 'dashboard' %}"
+       class="btn btn-outline-secondary mb-4">
+        ← Voltar para o Dashboard
+    </a>
+    <div class="card shadow">
+        <div class="card-body p-5">
+            <h2 class="card-title">
+                {{ equipamento.nome }}
+            </h2>
+            <hr>
+            <table class="table">
+                <tr>
+                    <th>ID</th>
+                    <td>{{ equipamento.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nome</th>
+                    <td>{{ equipamento.nome }}</td>
+                </tr>
+                <tr>
+                    <th>Número de Patrimônio</th>
+                    <td>{{ equipamento.numero_patrimonio }}</td>
+                </tr>
+                <tr>
+                    <th>Tipo</th>
+                    <td>{{ equipamento.tipo }}</td>
+                </tr>
+                <tr>
+                    <th>Em uso</th>
+                    <td>
+                        {% if equipamento.em_uso %}
+                            <span class="badge bg-danger">
+                                Em uso
+                            </span>
+                        {% else %}
+                            <span class="badge bg-success">
+                                Disponível
+                            </span>
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+
+            <div class="mt-4">
+
+                <a href="{% url 'editar_equipamento' equipamento.id %}"class="btn btn-warning">Editar</a>
+
+                <a href="{% url 'deletar_equipamento' equipamento.id %}"
+                   class="btn btn-danger"
+                   onclick="return confirm('Tem certeza que deseja apagar este equipamento?')">
+                    Apagar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
