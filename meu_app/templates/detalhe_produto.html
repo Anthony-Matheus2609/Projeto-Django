@@ -1,48 +1,50 @@
-{% extends 'meu_app/base.html' %}
+{% extends "meu_app/base.html" %}
 
 {% block meu_conteudo %}
-<div class="container mt-5">
-    
-    
-    <a href="/loja-inteligente/" class="btn btn-outline-secondary mb-4">← Voltar para a Vitrine</a>
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card">
+            <div class="card-body p-4">
 
-    <div class="card shadow">
-        <div class="row g-0">
-            
-            
-            <div class="col-md-4">
-                
-                <img src="https://placehold.co/400x400?text={{ produto.imagem }}" class="img-fluid rounded-start h-100" style="object-fit: cover;">
+                <h3 class="mb-4">
+                    <i class="bi bi-info-circle"></i>
+                    Detalhes do Equipamento
+                </h3>
+
+                <table class="table table-borderless">
+                    <tr>
+                        <th style="width: 40%;">Nome</th>
+                        <td>{{ equipamento.nome }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Número de Patrimônio</th>
+                        <td>{{ equipamento.numero_patrimonio }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Tipo</th>
+                        <td>{{ equipamento.tipo }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Em Uso</th>
+                        <td>
+                            {% if equipamento.em_uso %}
+                                <span class="badge bg-success">Sim</span>
+                            {% else %}
+                                <span class="badge bg-secondary">Não</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+
+                <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i>
+                    Voltar para o Dashboard
+                </a>
+
             </div>
-            
-        
-            <div class="col-md-8">
-                <div class="card-body p-5">
-                    <h2 class="card-title display-5">{{ produto.nome }}</h2>
-                    <hr>
-                    <h3 class="text-success mb-4">R$ {{ produto.preco }}</h3>
-                    
-                    <p class="card-text text-muted mb-4">
-                        Este é um excelente produto disponível em nossa loja inteligente. 
-                        Aproveite as condições especiais!
-                    </p>
-
-                    
-                    {% if produto.estoque > 0 %}
-                        <div class="alert alert-info">
-                            <strong>Disponibilidade:</strong> Temos {{ produto.estoque }} unidade(s) em estoque.
-                        </div>
-                        <button class="btn btn-success btn-lg px-5">Adicionar ao Carrinho</button>
-                    {% else %}
-                        <div class="alert alert-danger">
-                            <strong>Aviso:</strong> Este produto está temporariamente esgotado.
-                        </div>
-                        <button class="btn btn-secondary btn-lg px-5 disabled">Indisponível</button>
-                    {% endif %}
-                    
-                </div>
-            </div>
-
         </div>
     </div>
 </div>
